@@ -45,16 +45,19 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, string MLLK, string MLM, string MNCC, string TLK, string TSKT, string TGBH, string MT, HttpPostedFileBase photo, string photos)
+        public ActionResult Edit(int id, string MLLK, string MLM, string MNCC, string TLK, string TSKT, string TGBH, string MT, HttpPostedFileBase photo)
         {
             ViewBag.Title = "Cập nhật giá trị mới cho linh kiện";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
-            var product = dao.getById(id);
+            var product = new LinhKien();
+            product.maLinhKien = id;
             product.maLoaiLinhKien = int.Parse(MLLK);
             product.maLoaiMay = int.Parse(MLM);
             product.tenLinhKien = TLK;
             product.thoiGianBaoHanh = TGBH;
             product.moTa = MT;
+            product.thongSoKyThuat = TSKT;
+            product.maNhaCungCap = int.Parse(MNCC);
             if (ModelState.IsValid)
             {
                 if (photo != null && photo.ContentLength > 0)
@@ -66,7 +69,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                     product.img = photo.FileName;
 
                 }
-                //dao.Add(product);
+                dao.Edit(product);
                 return RedirectToAction("Index");
             }
             else
