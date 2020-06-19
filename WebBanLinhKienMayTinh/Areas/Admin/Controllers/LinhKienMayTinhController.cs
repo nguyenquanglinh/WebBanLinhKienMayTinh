@@ -50,7 +50,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             ViewBag.Title = "Cập nhật giá trị mới cho linh kiện";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
             var product = dao.getById(id);
-
+            product.maLoaiLinhKien = int.Parse(MLLK);
+            product.maLoaiMay = int.Parse(MLM);
+            product.tenLinhKien = TLK;
+            product.thoiGianBaoHanh = TGBH;
+            product.moTa = MT;
             if (ModelState.IsValid)
             {
                 if (photo != null && photo.ContentLength > 0)
@@ -60,8 +64,9 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                     photo.SaveAs(path);
 
                     product.img = photo.FileName;
-                    dao.Add(product);
+
                 }
+                //dao.Add(product);
                 return RedirectToAction("Index");
             }
             else
