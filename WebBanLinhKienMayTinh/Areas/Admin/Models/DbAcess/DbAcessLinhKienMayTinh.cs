@@ -21,24 +21,22 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
             Db.LinhKiens.Add(pro);
             Db.SaveChanges();
         }
-        public void Edit(LinhKien pro)
+        public void Edit(int id, string MLLK, string MLM, string MNCC, string TLK,
+            string TSKT, string TGBH, string MT,string img="")
         {
-            LinhKien product = getById(pro.maLinhKien);
-            if (product != null)
+            var product = GetById(id);
+            product.maLoaiLinhKien = int.Parse(MLLK);
+            product.maLoaiMay = int.Parse(MLM);
+            product.tenLinhKien = TLK;
+            product.thoiGianBaoHanh = TGBH;
+            product.moTa = MT;
+            product.thongSoKyThuat = TSKT;
+            product.maNhaCungCap = int.Parse(MNCC);
+            if (img != "")
             {
-                product.tenLinhKien = pro.tenLinhKien;
-                product.maLoaiLinhKien = pro.maLoaiLinhKien;
-                product.img = pro.img;
-                product.giaBan = pro.giaBan;
-                product.maNhaCungCap = pro.maNhaCungCap;
-                product.maLoaiMay = pro.maLoaiMay;
-                product.thongSoKyThuat = pro.thongSoKyThuat;
-                product.moTa = pro.moTa;
-                product.thoiGianBaoHanh = pro.thoiGianBaoHanh;
-                Db.SaveChanges();
+                product.img = img;
             }
-
-
+            Db.SaveChanges();
         }
         public int Delete(int id)
         {
@@ -52,9 +50,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
                 return -1;
         }
 
-
-
-        public LinhKien getById(int id)
+        public LinhKien GetById(int id)
         {
             return Db.LinhKiens.Single(i => i.maLinhKien== id);
         }

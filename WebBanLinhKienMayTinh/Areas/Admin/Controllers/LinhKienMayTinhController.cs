@@ -19,7 +19,6 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             dao.Delete(id);
             return Redirect("~/Admin/LinhKienMayTinh/Index");
         }
-
         public ActionResult Add()
         {
             ViewBag.Title = "Thêm linh kiện ";
@@ -30,6 +29,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             ViewBag.ncc = ncc.ListCate();
             return View(llk.ListCate());
         }
+
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Sửa linh kiện";
@@ -40,24 +40,16 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             ViewBag.ncc = ncc.ListCate();
 
             var proDao = new DbAcessLinhKienMayTinh();
-            ViewBag.pro = proDao.getById(id);
+            ViewBag.pro = proDao.GetById(id);
             return View(llk.ListCate());
         }
-
         [HttpPost]
-        public ActionResult Edit(int id, string MLLK, string MLM, string MNCC, string TLK, string TSKT, string TGBH, string MT, HttpPostedFileBase photo)
+        public ActionResult Edit(int id, string MLLK, string MLM, string MNCC, string TLK, 
+            string TSKT, string TGBH, string MT, HttpPostedFileBase photo)
         {
             ViewBag.Title = "Cập nhật giá trị mới cho linh kiện";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
-            var product = new LinhKien();
-            product.maLinhKien = id;
-            product.maLoaiLinhKien = int.Parse(MLLK);
-            product.maLoaiMay = int.Parse(MLM);
-            product.tenLinhKien = TLK;
-            product.thoiGianBaoHanh = TGBH;
-            product.moTa = MT;
-            product.thongSoKyThuat = TSKT;
-            product.maNhaCungCap = int.Parse(MNCC);
+            string img = "";
             if (ModelState.IsValid)
             {
                 if (photo != null && photo.ContentLength > 0)
@@ -65,17 +57,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                     var path = Path.Combine(Server.MapPath("~/Areas/Admin/Content/Photo/"),
                                             System.IO.Path.GetFileName(photo.FileName));
                     photo.SaveAs(path);
-
-                    product.img = photo.FileName;
-
+                    img = photo.FileName;
                 }
-                dao.Edit(product);
-                return RedirectToAction("Index");
+                dao.Edit(id,MLLK,MLM,MNCC,TLK,TSKT,TGBH,MT,img);
             }
-            else
-            {
-                return View(product);
-            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -109,7 +95,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int PageNum = 1, int PageSize = 1)
         {
             ViewBag.Title = "Quản lý linh kiện máy tính";
             var llk = new DbAcessLoaiLinhKien();
@@ -119,7 +105,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             ViewBag.ncc = ncc.ListCate();
             ViewBag.llk = llk.ListCate();
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
-            return View(dao.ListProductPage(1, 5));
+            return View(dao.ListProductPage(PageNum, PageSize));
         }
     }
 }
