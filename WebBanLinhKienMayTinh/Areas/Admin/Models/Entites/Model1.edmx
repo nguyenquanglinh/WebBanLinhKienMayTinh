@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BanLinhKienMayTinhModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LinhKien">
+          <Key>
+            <PropertyRef Name="maLinhKien" />
+          </Key>
+          <Property Name="maLinhKien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maLoaiLinhKien" Type="int" />
+          <Property Name="maNhaCungCap" Type="int" />
+          <Property Name="maLoaiMay" Type="int" />
+          <Property Name="tenLinhKien" Type="nvarchar" MaxLength="50" />
+          <Property Name="thongSoKyThuat" Type="nvarchar" MaxLength="50" />
+          <Property Name="moTa" Type="nvarchar" MaxLength="50" />
+          <Property Name="giaBan" Type="float" />
+          <Property Name="thoiGianBaoHanh" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LoaiLinhKien">
+          <Key>
+            <PropertyRef Name="maLoai" />
+          </Key>
+          <Property Name="maLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenLoai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LoaiMay">
+          <Key>
+            <PropertyRef Name="maLoaiMay" />
+          </Key>
+          <Property Name="maLoaiMay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenLoaiMay" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NhaCC">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenNhaCungCap" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PhieuNhap">
+          <Key>
+            <PropertyRef Name="maPhieuNhap" />
+          </Key>
+          <Property Name="maPhieuNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maLinhKien" Type="int" />
+          <Property Name="soLuong" Type="int" />
+          <Property Name="donGia" Type="float" />
+          <Property Name="tongTien" Type="float" />
+          <Property Name="ngayThang" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="passWord" />
+          </Key>
+          <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="passWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_LinhKien_LoaiLinhKien">
+          <End Role="LoaiLinhKien" Type="Self.LoaiLinhKien" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiLinhKien">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maLoaiLinhKien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinhKien_LoaiMay">
+          <End Role="LoaiMay" Type="Self.LoaiMay" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiMay">
+              <PropertyRef Name="maLoaiMay" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maLoaiMay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinhKien_NhaCC">
+          <End Role="NhaCC" Type="Self.NhaCC" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhaCC">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maNhaCungCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhap_LinhKien">
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="0..1" />
+          <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhKien">
+              <PropertyRef Name="maLinhKien" />
+            </Principal>
+            <Dependent Role="PhieuNhap">
+              <PropertyRef Name="maLinhKien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanLinhKienMayTinhModelStoreContainer">
+          <EntitySet Name="LinhKien" EntityType="Self.LinhKien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiLinhKien" EntityType="Self.LoaiLinhKien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiMay" EntityType="Self.LoaiMay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhaCC" EntityType="Self.NhaCC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuNhap" EntityType="Self.PhieuNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LinhKien_LoaiLinhKien" Association="Self.FK_LinhKien_LoaiLinhKien">
+            <End Role="LoaiLinhKien" EntitySet="LoaiLinhKien" />
+            <End Role="LinhKien" EntitySet="LinhKien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinhKien_LoaiMay" Association="Self.FK_LinhKien_LoaiMay">
+            <End Role="LoaiMay" EntitySet="LoaiMay" />
+            <End Role="LinhKien" EntitySet="LinhKien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinhKien_NhaCC" Association="Self.FK_LinhKien_NhaCC">
+            <End Role="NhaCC" EntitySet="NhaCC" />
+            <End Role="LinhKien" EntitySet="LinhKien" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhap_LinhKien" Association="Self.FK_PhieuNhap_LinhKien">
+            <End Role="LinhKien" EntitySet="LinhKien" />
+            <End Role="PhieuNhap" EntitySet="PhieuNhap" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BanLinhKienMayTinhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LinhKien">
+          <Key>
+            <PropertyRef Name="maLinhKien" />
+          </Key>
+          <Property Name="maLinhKien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maLoaiLinhKien" Type="Int32" />
+          <Property Name="maNhaCungCap" Type="Int32" />
+          <Property Name="maLoaiMay" Type="Int32" />
+          <Property Name="tenLinhKien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="thongSoKyThuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="moTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giaBan" Type="Double" />
+          <Property Name="thoiGianBaoHanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiLinhKien" Relationship="Self.FK_LinhKien_LoaiLinhKien" FromRole="LinhKien" ToRole="LoaiLinhKien" />
+          <NavigationProperty Name="LoaiMay" Relationship="Self.FK_LinhKien_LoaiMay" FromRole="LinhKien" ToRole="LoaiMay" />
+          <NavigationProperty Name="NhaCC" Relationship="Self.FK_LinhKien_NhaCC" FromRole="LinhKien" ToRole="NhaCC" />
+          <NavigationProperty Name="PhieuNhaps" Relationship="Self.FK_PhieuNhap_LinhKien" FromRole="LinhKien" ToRole="PhieuNhap" />
+        </EntityType>
+        <EntityType Name="LoaiLinhKien">
+          <Key>
+            <PropertyRef Name="maLoai" />
+          </Key>
+          <Property Name="maLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LinhKiens" Relationship="Self.FK_LinhKien_LoaiLinhKien" FromRole="LoaiLinhKien" ToRole="LinhKien" />
+        </EntityType>
+        <EntityType Name="LoaiMay">
+          <Key>
+            <PropertyRef Name="maLoaiMay" />
+          </Key>
+          <Property Name="maLoaiMay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenLoaiMay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LinhKiens" Relationship="Self.FK_LinhKien_LoaiMay" FromRole="LoaiMay" ToRole="LinhKien" />
+        </EntityType>
+        <EntityType Name="NhaCC">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenNhaCungCap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LinhKiens" Relationship="Self.FK_LinhKien_NhaCC" FromRole="NhaCC" ToRole="LinhKien" />
+        </EntityType>
+        <EntityType Name="PhieuNhap">
+          <Key>
+            <PropertyRef Name="maPhieuNhap" />
+          </Key>
+          <Property Name="maPhieuNhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maLinhKien" Type="Int32" />
+          <Property Name="soLuong" Type="Int32" />
+          <Property Name="donGia" Type="Double" />
+          <Property Name="tongTien" Type="Double" />
+          <Property Name="ngayThang" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LinhKien" Relationship="Self.FK_PhieuNhap_LinhKien" FromRole="PhieuNhap" ToRole="LinhKien" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="passWord" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_LinhKien_LoaiLinhKien">
+          <End Role="LoaiLinhKien" Type="Self.LoaiLinhKien" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiLinhKien">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maLoaiLinhKien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinhKien_LoaiMay">
+          <End Role="LoaiMay" Type="Self.LoaiMay" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiMay">
+              <PropertyRef Name="maLoaiMay" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maLoaiMay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinhKien_NhaCC">
+          <End Role="NhaCC" Type="Self.NhaCC" Multiplicity="0..1" />
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhaCC">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="LinhKien">
+              <PropertyRef Name="maNhaCungCap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhap_LinhKien">
+          <End Role="LinhKien" Type="Self.LinhKien" Multiplicity="0..1" />
+          <End Role="PhieuNhap" Type="Self.PhieuNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhKien">
+              <PropertyRef Name="maLinhKien" />
+            </Principal>
+            <Dependent Role="PhieuNhap">
+              <PropertyRef Name="maLinhKien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanLinhKienMayTinhEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LinhKiens" EntityType="Self.LinhKien" />
+          <EntitySet Name="LoaiLinhKiens" EntityType="Self.LoaiLinhKien" />
+          <EntitySet Name="LoaiMays" EntityType="Self.LoaiMay" />
+          <EntitySet Name="NhaCCs" EntityType="Self.NhaCC" />
+          <EntitySet Name="PhieuNhaps" EntityType="Self.PhieuNhap" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_LinhKien_LoaiLinhKien" Association="Self.FK_LinhKien_LoaiLinhKien">
+            <End Role="LoaiLinhKien" EntitySet="LoaiLinhKiens" />
+            <End Role="LinhKien" EntitySet="LinhKiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinhKien_LoaiMay" Association="Self.FK_LinhKien_LoaiMay">
+            <End Role="LoaiMay" EntitySet="LoaiMays" />
+            <End Role="LinhKien" EntitySet="LinhKiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinhKien_NhaCC" Association="Self.FK_LinhKien_NhaCC">
+            <End Role="NhaCC" EntitySet="NhaCCs" />
+            <End Role="LinhKien" EntitySet="LinhKiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhap_LinhKien" Association="Self.FK_PhieuNhap_LinhKien">
+            <End Role="LinhKien" EntitySet="LinhKiens" />
+            <End Role="PhieuNhap" EntitySet="PhieuNhaps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BanLinhKienMayTinhModelStoreContainer" CdmEntityContainer="BanLinhKienMayTinhEntities1">
+          <EntitySetMapping Name="LinhKiens">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.LinhKien">
+              <MappingFragment StoreEntitySet="LinhKien">
+                <ScalarProperty Name="maLinhKien" ColumnName="maLinhKien" />
+                <ScalarProperty Name="maLoaiLinhKien" ColumnName="maLoaiLinhKien" />
+                <ScalarProperty Name="maNhaCungCap" ColumnName="maNhaCungCap" />
+                <ScalarProperty Name="maLoaiMay" ColumnName="maLoaiMay" />
+                <ScalarProperty Name="tenLinhKien" ColumnName="tenLinhKien" />
+                <ScalarProperty Name="thongSoKyThuat" ColumnName="thongSoKyThuat" />
+                <ScalarProperty Name="moTa" ColumnName="moTa" />
+                <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+                <ScalarProperty Name="thoiGianBaoHanh" ColumnName="thoiGianBaoHanh" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiLinhKiens">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.LoaiLinhKien">
+              <MappingFragment StoreEntitySet="LoaiLinhKien">
+                <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+                <ScalarProperty Name="tenLoai" ColumnName="tenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiMays">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.LoaiMay">
+              <MappingFragment StoreEntitySet="LoaiMay">
+                <ScalarProperty Name="maLoaiMay" ColumnName="maLoaiMay" />
+                <ScalarProperty Name="tenLoaiMay" ColumnName="tenLoaiMay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhaCCs">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.NhaCC">
+              <MappingFragment StoreEntitySet="NhaCC">
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="tenNhaCungCap" ColumnName="tenNhaCungCap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuNhaps">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.PhieuNhap">
+              <MappingFragment StoreEntitySet="PhieuNhap">
+                <ScalarProperty Name="maPhieuNhap" ColumnName="maPhieuNhap" />
+                <ScalarProperty Name="maLinhKien" ColumnName="maLinhKien" />
+                <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+                <ScalarProperty Name="donGia" ColumnName="donGia" />
+                <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+                <ScalarProperty Name="ngayThang" ColumnName="ngayThang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BanLinhKienMayTinhModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="passWord" ColumnName="passWord" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
