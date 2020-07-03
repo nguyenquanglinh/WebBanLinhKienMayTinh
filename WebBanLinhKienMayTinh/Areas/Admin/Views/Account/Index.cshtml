@@ -1,0 +1,74 @@
+﻿
+@model PagedList.IPagedList<WebBanLinhKienMayTinh.Areas.Admin.Models.Entites.User>
+@using PagedList.Mvc
+<div class="box-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <a href="~/Admin/Account/Add">Thêm mới</a>
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên tài khoản</th>
+                                <th>Mật khẩu</th>
+                                <th>Chức năng</th>
+                                <th>Trạng thái</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < Model.Count; i++)
+                            {
+                                var item = Model.ElementAt(i);
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>
+                                        @item.userName
+                                    </td>
+                                    <td>@item.passWord</td>
+                                    <td>@item.chucNang</td>
+                                    <td>@item.trangThai</td>
+                                    <td>
+                                        <a href="~/Admin/Account/Edit/@item.maGioHang">
+                                            <span class="glyphicon glyphicon-edit">
+                                            </span>
+                                        </a>
+                                        <a href="~/Admin/Account/Delete/@item.maGioHang" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum }))
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+    </div>
+    <!-- /.row -->
+
+
+
+</div>

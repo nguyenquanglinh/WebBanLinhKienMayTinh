@@ -8,11 +8,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 {
     public class DbAcessNhaCC
     {
-        public BanLinhKienMayTinh Db { get; private set; }
+        public DbBanLinhKienMayTinh Db { get; private set; }
 
         public DbAcessNhaCC()
         {
-            this.Db = new BanLinhKienMayTinh();
+            this.Db = new DbBanLinhKienMayTinh();
         }
         public List<NhaCC> ListCate()
         {

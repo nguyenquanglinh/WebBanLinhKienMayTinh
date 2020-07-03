@@ -6,11 +6,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 {
     public class DbAcessLoaiLinhKien
     {
-        public BanLinhKienMayTinh Db { get; private set; }
+        public DbBanLinhKienMayTinh Db { get; private set; }
 
         public DbAcessLoaiLinhKien()
         {
-            this.Db = new BanLinhKienMayTinh();
+            this.Db = new DbBanLinhKienMayTinh();
         }
         public List<LoaiLinhKien> ListCate()
         {

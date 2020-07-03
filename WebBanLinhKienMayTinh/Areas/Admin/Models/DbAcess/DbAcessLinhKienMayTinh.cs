@@ -2,16 +2,19 @@
 using System.Linq;
 using WebBanLinhKienMayTinh.Areas.Admin.Models.Entites;
 using PagedList;
+using System.Data;
+using System;
+
 namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 {
     public class DbAcessLinhKienMayTinh
     {
         public DbAcessLinhKienMayTinh()
         {
-            this.Db = new BanLinhKienMayTinh();
+            Db = new DbBanLinhKienMayTinh();
         }
 
-        public BanLinhKienMayTinh Db { get; private set; }
+        public DbBanLinhKienMayTinh Db { get; private set; }
         public List<LinhKien> ListProduct()
         {
             return Db.LinhKiens.ToList();
@@ -22,7 +25,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
             Db.SaveChanges();
         }
         public void Edit(int id, string MLLK, string MLM, string MNCC, string TLK,
-            string TSKT, string TGBH, string MT,string img="")
+            string TSKT, string TGBH, string MT, string img = "")
         {
             var product = GetById(id);
             product.maLoaiLinhKien = int.Parse(MLLK);
@@ -52,7 +55,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 
         public LinhKien GetById(int id)
         {
-            return Db.LinhKiens.Single(i => i.maLinhKien== id);
+            return Db.LinhKiens.Single(i => i.maLinhKien == id);
         }
 
         public List<LinhKien> ListProduct(int Pagenum, int PageSize)
@@ -63,11 +66,17 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 
 
 
-        public IEnumerable<LinhKien> ListProductPage(int Pagenum, int PageSize)
+        public IEnumerable<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
         {
-
-            return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize);
+            if (loai == 0)
+                return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize);
+            else
+                return Db.Database.SqlQuery<LinhKien>("select * from LinhKien where maLoaiMay= "+loai).ToPagedList(Pagenum, PageSize);
         }
 
+        public IEnumerable<User> ListProductPageAccount(int pageNum, int pageSize)
+        {
+            return Db.Users.OrderByDescending(a => a.userName).ToPagedList(pageNum, pageSize);
+        }
     }
 }

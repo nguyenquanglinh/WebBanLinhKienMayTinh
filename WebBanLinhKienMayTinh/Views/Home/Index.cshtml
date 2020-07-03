@@ -11,54 +11,7 @@
     <script src="~/fonts/Js/jquery-3.2.1.min.js" rel="stylesheet"></script>
 </head>
 <body>
-    <div id="divSignup" class="modal">
-        <form class="modal-content animate" method="POST">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('divSignup').style.display='none'" class="close" title="Close Modal">×</span>
-                <img src="~/Content/Photo/images/logo.jpg" alt="logo" class="avatar">
-            </div>
-            <div class="containerLogin">
-                <input type="text" placeholder="Họ và tên" name="hoTenDK" id="hoTenDK" required="">
-                <input type="text" placeholder="Tên đăng nhập" name="tenDangNhapDK" id="tenDangNhapDK" required="">
-                <input type="password" placeholder="Mật khẩu" name="passDK" id="passDK" required="">
-                <input type="password" placeholder="Xác nhận mật khẩu" name="passDKXN" id="passDKXN" required="">
-                <input type="email" placeholder="Email liên hệ" name="emailDK" id="emailDK" required="">
-                <input type="text" placeholder="Địa chỉ" name="diaChiDK" id="diaChiDK" required="">
-                <button name="buttonDangKy" id="buttonDangKy">Đăng Ký</button>
-            </div>
-        </form>
-    </div>
-    <div id="divLogin" class="modal">
-        <form class="modal-content animate" method="POST">
-            <div class="imgcontainer"> <span onclick="document.getElementById('divLogin').style.display='none'" class="close" title="Close Modal">×</span>
-             <img src="~/Content/Photo/images/logo.jpg" alt="logo" class="avatar"> </div>
-            <div class="containerLogin">
-                <label for="uname"><b>Tên đăng nhập</b></label>
-                <input type="text" placeholder="Nhập tên đăng nhập" name="uname" required="">
-                <label for="psw"><b>Mật khẩu</b></label>
-                <input type="password" placeholder="Nhập mật khẩu" name="psw" required="">
-                <button name="buttonDangNhap">Đăng nhập</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember">
-                    Remember me
-                </label>
-            </div>
-            <div class="containerLogin" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('divLogin').style.display='none'" class="cancelbtn">Cancel</button>
-            </div>
-        </form>
-    </div>
-    <div class="sync">
-        <div id="divSync" class="modal">
-            <div class="modal-content">
-                <p align="center"><b>Bạn có muốn đồng bộ giỏ hàng hiện tại vào giỏ hàng của bạn không?</b></p>
-                <form>
-                    <button id="btnSync">Đồng bộ</button>
-                    <button id="btnUnSync">Bỏ qua</button>
-                </form>
-            </div>
-        </div>
-    </div>
+   
     <div id="divlogout">
     </div>
     <div id="container">
@@ -74,39 +27,42 @@
                     <div class="divAccount">
                         <div>
                             <table style="width:100%; table-layout: fixed">
-                                <tbody>
+                               @{
+                                   var username = Session["username"];
+                                   if (username == null)
+                                   {
+                                    <tbody>
+                                        <tr>
+                                            <td align="center">
+                                                <a href="~/Admin/AdminHome/Logup">
+                                                    <h4 id="btnDangKy">Đăng ký</h4>
+                                                </a>
+                                            </td>
+                                            <td align="center">
+                                                <a href="~/Admin/AdminHome/Login">
+                                                    <h4 id="btnDangNhap">Đăng Nhập</h4>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                   }
+                                   else
+                                   {
                                     <tr>
-                                        <td align="center"><h4 id="btnDangKy">Đăng ký</h4></td>
-                                        <td align="center"><h4 id="btnDangNhap">Đăng Nhập</h4></td>
+                                        <td align="center">
+                                            <b>Chào mừng bạn quay trở lại </b>
+                                             <h4 id="btnDangKy">@username</h4>
+                                        </td>
+                                         
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <span class="badge"><a href="#" id="cart"><i class="fa fa-shopping-cart cart-icon"></i>0</a></span>
-                    <div class="container">
-                        <div class="shopping-cart">
-                            <div class="shopping-cart-header">
-                                <i class="fa fa-shopping-cart cart-icon"></i>
-                                <div class="shopping-cart-total">
-                                    <span class="lighter-text">Tổng tiền:</span>
-                                    <span class="main-color-text">0đ</span>
-                                </div>
-                            </div>
-                            <ul class="shopping-cart-items"></ul>
-                            <table style="width: 100%;">
-                                <tbody>
-                                    <tr>
-                                        <td><a href="cart.php?xem_gio_hang" class="button">Xem giỏ hàng</a></td>
-                                        <td><a href="cart.php?thanh_toan" class="button">Thanh toán</a></td>
-                                    </tr>
-                                </tbody>
+                                   }
+
+                            } 
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-          
             <p class="clear"></p>
         </header>
         <nav>
@@ -129,30 +85,53 @@
             </div>
         </nav>
         <article>
-            
-            <!-- San pham moi -->
-            <section id="spBanMoi" class="feildContent">
-                <h2>Ram</h2>
-                <div id="hienThiSPMoi">
+            <!-- San pham ban chay -->
+            <section id='spBanChay' class='feildContent'>
+                <h2>Sản Phẩm Bán Chạy</h2>
+                <div id='hienThiSPBC'>
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="product.php?ma_san_pham=37"> 
-                            <img src="~/Areas/Admin/Content/Photo/ram.jpg" alt="~/Areas/Admin/Content/Photo/ram.jpg"> </a>
-                            <div class="gia">Giá :175,000</div>
+                            <a href='#'> <img src="#" alt="#>" /> </a>
+                            <div class="gia">Giá :100</div>
                             <div class="thongTinSanPham">
-                                <a href="product.php?ma_san_pham= 37"> Mitsumi Keyboard PS/2 - Black</a>
+                                <a href='#'> Test</a>
                             </div>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <div class="gia">Giá :175,000</div>
+                                <div class="gia">Giá :1000></div>
                                 <div class="thongTinSanPham">
-                                    <a href="product.php?ma_san_pham= 37"> Mitsumi Keyboard PS/2 - Black</a>
+                                    <a href='#'> Mô tả</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
+                    <div class='clear'></div>
+                </div>
+            </section>;
+            <!-- San pham moi -->
+            <section id='spBanMoi' class='feildContent'>
+                <h2>Sản Phẩm Mới</h2>
+                <div id='hienThiSPMoi'>
+                    ";
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <a href='product.php?ma_san_pham=<?php echo $row["ma_san_pham"] ?>'> <img src="images/san_pham/<?php echo $row[" hinh"] ?>"  alt="<?php echo $row["hinh"] ?>" /> </a>
+                            <div class="gia">Giá :<?php echo number_format($row["don_gia"]) ?></div>
+                            <div class="thongTinSanPham">
+                                <a href='product.php?ma_san_pham= <?php echo $row["ma_san_pham"] ?>'> <?php echo $row["ten_san_pham"] ?></a>
+                            </div>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <div class="gia">Giá :<?php echo number_format($row["don_gia"]) ?></div>
+                                <div class="thongTinSanPham">
+                                    <a href='product.php?ma_san_pham= <?php echo $row["ma_san_pham"] ?>'> <?php echo $row["mo_ta_tom_tat"] ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='clear'></div>
                 </div>
             </section>
         </article>
@@ -165,7 +144,7 @@
                         </i>
                         Tìm Kiếm sản Phẩm
                     </h4>
-                    <div id="formSearch" style=" padding 10px; ">
+                    <div id="formSearch" style="padding 10px">
                         <input id="textSearch" class="ui-autocomplete-input" name="nameProduct" type="text" style="float: left;">
                         <button type="button" id="btnSearch" style=" background url(~/Content/Photo/images/search_f2.png) no-repeat;background-size: contain;"> </button>
                     </div>

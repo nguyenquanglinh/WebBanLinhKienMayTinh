@@ -1,21 +1,21 @@
 namespace WebBanLinhKienMayTinh.Areas.Admin.Models.Entites
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
-    public partial class BanLinhKienMayTinh : DbContext
+    public partial class DbBanLinhKienMayTinh : DbContext
     {
-        public BanLinhKienMayTinh()
-            : base("name=DbAcess")
+        public DbBanLinhKienMayTinh()
+            : base("name=DbBanLinhKienMayTinh")
         {
         }
 
+        public virtual DbSet<GioHang> GioHangs { get; set; }
         public virtual DbSet<LinhKien> LinhKiens { get; set; }
         public virtual DbSet<LoaiLinhKien> LoaiLinhKiens { get; set; }
         public virtual DbSet<LoaiMay> LoaiMays { get; set; }
         public virtual DbSet<NhaCC> NhaCCs { get; set; }
+        public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
+        public virtual DbSet<PhieuXuat> PhieuXuats { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
 

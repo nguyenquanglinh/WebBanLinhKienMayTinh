@@ -260,19 +260,69 @@ desired effect
                 <ul class="sidebar-menu">
                     <li class="header">HEADER</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="active"><a href="#" onclick="return confirm('Chưa hoàn thành?')"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                    <li onclick="return confirm('Chưa hoàn thành?')"><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                    <li class="treeview"onclick="return confirm('Chưa hoàn thành?')">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span>Multilevel</span>
+
+                    <li class="active">
+                    <a href="~/Admin/Account/Index">
+                        <i class="fa fa-link"></i> 
+                       <span>Quản lý tài khoản</span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="~/Areas/Admin/LinhKienMayTinh/Index">
+                            <i class="fa fa-link"></i> <span>Quản lý linh kiện</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#">Link in level 2</a></li>
-                            <li><a href="#">Link in level 2</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=0">Tất cả</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=1">CPU</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=10">Main</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=2">Ram</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=11">Ổ cứng</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=4">Nguồn</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=7">Vỏ ngoài</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=3">Card màn hình</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=8">Màn hình</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=6">Chuột</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=5">Bàn phím</a></li>
+                            <li><a href="/Admin/LinhKienMayTinh?loai=9">Dây nối </a></li>
                         </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Quản lý hóa đơn </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Hóa đơn nhập</a></li>
+                            <li><a href="#">Hóa đơn xuất</a></li>
+                            <li><a href="#">Thống kê doanh thu</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview" onclick="return confirm('Chuyển đến quản lý phân loại')">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>Quản lý phân loại </span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Loại linh kiện</a></li>
+                            <li><a href="#">Loại máy</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="~/Home/Index">
+                            <i class="fa fa-link"></i>
+                            <span>Trang người dùng</span>
+                        </a>
                     </li>
                 </ul>
                 <!-- /.sidebar-menu -->

@@ -10,7 +10,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
     public class AdminHomeController : Controller
     {
         // GET: Admin/AdminHome
-        public ActionResult Index()
+        public ActionResult Change()
         {
             ViewBag.Title = "Index admin";
             return View();
@@ -35,15 +35,25 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            ViewBag.Title = "Admin Login "+username;
+            ViewBag.Title = "Admin Login " + username;
             DbAcessUsers dao = new DbAcessUsers();
-            if (dao.checkLogin(username, password))
+            var user = dao.GetByUP(username, password);
+            if (user != null)
             {
                 Session["username"] = username;
-                return Redirect("../LinhKienMayTinh/Index");
+                if (user.chucNang == "admin")
+                    return RedirectToAction("../Account/Index");
+                else
+                {
+                    
+                    return Redirect("../../Home/Index");
+                }
             }
             else
-                return Redirect("Login");
+            {
+                ViewBag.LoginError = "Đăng nhập không thành công";
+                return View("Login");
+            }
         }
         [HttpPost]
         public ActionResult Logup(string username, string password)

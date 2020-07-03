@@ -6,11 +6,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.Entites
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PhieuNhap")]
-    public partial class PhieuNhap
+    [Table("PhieuXuat")]
+    public partial class PhieuXuat
     {
         [Key]
-        public int maPhieuNhap { get; set; }
+        public int maPhieuXuat { get; set; }
 
         public int? maLinhKien { get; set; }
 

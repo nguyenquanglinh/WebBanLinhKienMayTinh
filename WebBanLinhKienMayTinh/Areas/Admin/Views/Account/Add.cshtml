@@ -1,0 +1,101 @@
+﻿<script type="text/javascript">
+
+  function checkForm(form)
+  {
+    if(form.userName.value == "") {
+      alert("Error: Username cannot be blank!");
+      form.username.focus();
+      return false;
+    }
+    re = /^\w+$/;
+    if(!re.test(form.userName.value)) {
+      alert("Error: Username must contain only letters, numbers and underscores!");
+      form.username.focus();
+      return false;
+    }
+
+    if (form.passWord.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.pwd1.focus();
+        return false;
+    }
+    if (form.passWord.value == form.username.value) {
+        alert("Error: Password must be different from Username!");
+        form.pwd1.focus();
+        return false;
+    }
+    re = /[0-9]/;
+    if (!re.test(form.passWord.value)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        form.pwd1.focus();
+        return false;
+    }
+    re = /[a-z]/;
+    if (!re.test(form.passWord.value)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.pwd1.focus();
+        return false;
+    }
+    re = /[A-Z]/;
+    if (!re.test(form.passWord.value)) {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.pwd1.focus();
+        return false;
+    }
+    alert("You entered a valid password: " + form.passWord.value);
+    return true;
+  }
+
+</script>
+<form action="Add" method="post" role="form" enctype="multipart/form-data"onsubmit="checkForm(this)" >
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">@ViewBag.Title <b>@ViewBag.Error</b> </h3>
+           
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Tên tài khoản</label>
+                        <input type="text" name="userName" class="form-control" id="userName" placeholder="Enter tên tài khoản">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mật khẩu</label>
+                        <input type="password" class="form-control" name="passWord" id="passWord" placeholder="Enter mật khẩu ">
+                    </div>
+                   
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Trạng Thái</label>
+                        <input type="text" name="trangThai" class="form-control" id="trangThai" placeholder="Enter trạng thái">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Chức năng</label>
+                        <input type="text" class="form-control" name="chucNang" id="chucNang" placeholder="Enter chức năng">
+                    </div>
+                    <!-- /.form-group -->
+
+                </div>
+                <!-- /.col -->
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="@ViewBag.Title" />
+    </div>
+</form>

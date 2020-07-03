@@ -19,6 +19,13 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.Entites
         public string passWord { get; set; }
 
         [StringLength(50)]
-        public string fullName { get; set; }
+        public string chucNang { get; set; }
+
+        [StringLength(50)]
+        public string trangThai { get; set; }
+
+        public int? maGioHang { get; set; }
+
+        public virtual GioHang GioHang { get; set; }
     }
 }
