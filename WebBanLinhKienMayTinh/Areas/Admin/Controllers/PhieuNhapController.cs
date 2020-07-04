@@ -22,7 +22,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         public ActionResult Add()
         {
 
-            ViewBag.Title = "Thêm thêm phiếu nhập";
+            ViewBag.Title = "Thêm phiếu nhập";
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
 
@@ -74,7 +74,6 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                 }
 
             }
-            ViewBag.Error = "Teen tài khoản đã tồn tại ";
             return View("Add");
 
         }

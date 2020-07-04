@@ -22,14 +22,14 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         public ActionResult Add()
         {
 
-            ViewBag.Title = "Thêm thêm phiếu xuất";
+            ViewBag.Title = "Thêm phiếu xuất";
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
 
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Sửa phiếu xuất";
-            ViewBag.pn = new DbAcessPhieuXuat().GetById(id);
+            ViewBag.px = new DbAcessPhieuXuat().GetById(id);
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
 
@@ -37,7 +37,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         {
             try
             {
-                ViewBag.Title = "Xóa phiếu nhập";
+                ViewBag.Title = "Xóa phiếu xuất";
                 new DbAcessPhieuXuat().Delete(id);
             }
             catch
@@ -50,7 +50,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(int MLLK, string SL, string DG, string TT)
         {
-            ViewBag.Title = "Thêm phiếu nhập";
+            ViewBag.Title = "Thêm phiếu xuất";
             var product = new PhieuXuat();
             product.maLinhKien = MLLK;
             if (!string.IsNullOrEmpty(SL))
@@ -74,7 +74,6 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                 }
 
             }
-            ViewBag.Error = "Teen tài khoản đã tồn tại ";
             return View("Add");
 
         }
