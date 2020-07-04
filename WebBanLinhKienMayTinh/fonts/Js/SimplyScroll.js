@@ -3,7 +3,7 @@
         {
 
         });
-    $(".simply-scroll").css("width", "100%");
+    $(".simply-scroll").css("width", "400px");
     $(".simply-scroll").css("height", "auto");
     $(".simply-scroll .simply-scroll-clip").css("width", "100%");
     $(".simply-scroll .simply-scroll-clip").css("height", "220px");

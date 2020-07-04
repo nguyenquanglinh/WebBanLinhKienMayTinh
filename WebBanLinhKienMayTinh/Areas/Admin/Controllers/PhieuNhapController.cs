@@ -11,7 +11,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
     public class PhieuNhapController : Controller
     {
         // GET: Admin/PhieuNhap
-        public ActionResult Index(int PageNum = 1, int PageSize = 1)
+        public ActionResult Index(int PageNum = 1, int PageSize = 5)
         {
             ViewBag.Title = "Quản lý phiếu nhập";
             var dblk = new DbAcessLinhKienMayTinh();

@@ -7,7 +7,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         // GET: Admin/Account
-        public ActionResult Index(int PageNum = 1, int PageSize = 1)
+        public ActionResult Index(int PageNum = 1, int PageSize = 5)
         {
             ViewBag.Title = "Quản lý tài khoản";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
@@ -16,7 +16,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            ViewBag.Title = "Thêm linh kiện mới";
+            ViewBag.Title = "Thêm tài khoản mới";
             return View();
         }
 
@@ -30,7 +30,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         {
             try
             {
-                ViewBag.Title = "Xóa linh kiện";
+                ViewBag.Title = "Xóa tài khoản";
                 var dao = new DbAcessUsers();
                 dao.Delete(id);
 
@@ -45,7 +45,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(string userName, string passWord, string chucNang, string trangThai)
         {
-            ViewBag.Title = "Thêm linh kiện mới";
+            ViewBag.Title = "Thêm tài khoản mới";
             var product = new User();
             product.userName = userName;
             product.passWord = passWord;
@@ -66,7 +66,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                 }
 
             }
-            ViewBag.Error = "Teen tài khoản đã tồn tại ";
+            ViewBag.Error = "Tên tài khoản đã tồn tại ";
             return View("Add");
 
         }

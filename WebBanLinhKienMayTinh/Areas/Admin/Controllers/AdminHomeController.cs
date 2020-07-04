@@ -4,26 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess;
+using WebBanLinhKienMayTinh.Areas.Admin.Models.Entites;
 
 namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
 {
     public class AdminHomeController : Controller
     {
         // GET: Admin/AdminHome
-      
+
         public ActionResult Login()
         {
-            ViewBag.Title = "Admin Login";
+            ViewBag.Title = "Đăng nhập ";
             return View();
         }
         public ActionResult Logup()
         {
-            ViewBag.Title = "user logup as admin";
+            ViewBag.Title = "Đăng ký";
+            return View();
+        }
+        public ActionResult KhongNhoMatKhau()
+        {
+            ViewBag.Title = "Quên mật khẩu";
             return View();
         }
         public ActionResult Logout()
         {
-            ViewBag.Title = "Admin out";
+            ViewBag.Title = "Đăng xuất";
             Session["username"] = null;
             return Redirect("Login");
         }
@@ -31,7 +37,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            ViewBag.Title = "Admin Login " + username;
+            ViewBag.Title = "Đăng nhập " + username;
             DbAcessUsers dao = new DbAcessUsers();
             var user = dao.GetByUP(username, password);
             if (user != null)
@@ -41,7 +47,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
                     return RedirectToAction("../Account/Index");
                 else
                 {
-                    
+
                     return Redirect("../../Home/Index");
                 }
             }
@@ -54,8 +60,18 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Logup(string username, string password)
         {
-            ViewBag.Title = "Admin Logup";
-            return Redirect("Logup");
+            ViewBag.Title = "Đăng Ký";
+            var us = new User();
+            us.userName = username;
+            us.passWord = password;
+            if (new DbAcessUsers().AddUser(us)) return View("Login");
+            else return Redirect("Logup");
+        }
+        [HttpPost]
+        public ActionResult KhongNhoMatKhau(string username)
+        {
+
+            return View("Login");
         }
     }
 }

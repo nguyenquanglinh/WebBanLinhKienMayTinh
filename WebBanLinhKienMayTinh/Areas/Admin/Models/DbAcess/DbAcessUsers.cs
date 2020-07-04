@@ -32,10 +32,17 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
             return true;
         }
 
-        public void AddUser(User product)
+        public bool AddUser(User product)
         {
-            Db.Users.Add(product);
-            Db.SaveChanges();
+            try
+            {
+                Db.Users.Add(product);
+                 Db.SaveChanges();
+                return true;
+            }
+            catch { }
+            return false;
+            
         }
 
         public User GetByMaGH(int maGioHang)

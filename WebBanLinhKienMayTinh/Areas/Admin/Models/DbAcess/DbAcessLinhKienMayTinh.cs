@@ -14,6 +14,11 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
             Db = new DbBanLinhKienMayTinh();
         }
 
+        internal dynamic GetLinhKienMoi()
+        {
+            return Db.Database.SqlQuery<LinhKien>("select DISTINCT top(8)LinhKien.maLinhKien,maLoaiLinhKien,maNhaCungCap,maLoaiMay,tenLinhKien,thongSoKyThuat,moTa,giaBan,thoiGianBaoHanh,img from PhieuNhap, LinhKien where PhieuNhap.maLinhKien = LinhKien.maLinhKien ").ToList();
+        }
+
         public DbBanLinhKienMayTinh Db { get; private set; }
         public List<LinhKien> ListProduct()
         {
@@ -67,14 +72,17 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
             return Db.LinhKiens.ToList();
         }
 
+        public List<LinhKien> GetLinhKienBanChay()
+        {
+           return Db.Database.SqlQuery<LinhKien>("select LinhKien.maLinhKien,maLoaiLinhKien,maNhaCungCap,maLoaiMay,tenLinhKien,thongSoKyThuat,moTa,giaBan,thoiGianBaoHanh,img from LinhKien, (select top(8)  count(PhieuXuat.maPhieuXuat) as stt, PhieuXuat.maLinhKien from PhieuXuat, LinhKien where PhieuXuat.maLinhKien = LinhKien.maLinhKien   group by  PhieuXuat.maLinhKien order by count(PhieuXuat.maPhieuXuat) desc) as s   where LinhKien.maLinhKien = s.maLinhKien").ToList();
+        }
 
-
-        public List<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
+        public IEnumerable<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
         {
             if (loai == 0)
-                return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize).ToList();
+                return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize);
             else
-                return Db.Database.SqlQuery<LinhKien>("select * from LinhKien where maLoaiMay= "+loai).ToPagedList(Pagenum, PageSize).ToList();
+                return Db.Database.SqlQuery<LinhKien>("select * from LinhKien where maLoaiMay= "+loai).ToPagedList(Pagenum, PageSize);
         }
 
         public IEnumerable<User> ListProductPageAccount(int pageNum, int pageSize)

@@ -28,9 +28,9 @@
                         <div>
                             <table style="width:100%; table-layout: fixed">
                                 @{
-                                   var username = Session["username"];
-                                   if (username == null)
-                                   {
+                                    var username = Session["username"];
+                                    if (username == null)
+                                    {
                                         <tbody>
                                             <tr>
                                                 <td align="center">
@@ -45,9 +45,9 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                   }
-                                   else
-                                   {
+                                    }
+                                    else
+                                    {
                                         <tr>
                                             <td align="center">
                                                 <b>Chào mừng bạn quay trở lại </b>
@@ -59,7 +59,7 @@
                                             </td>
 
                                         </tr>
-                                   }
+                                    }
 
                                 }
                             </table>
@@ -93,7 +93,7 @@
             <section id='spBanMoi' class='feildContent'>
                 <h2>Sản Phẩm Bán Chạy</h2>
                 <div id='hienThiSPMoi'>
-                    @foreach (var item in ViewBag.SPBC)
+                    @foreach (var item in ViewBag.SP)
                     {
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -118,33 +118,6 @@
                 </div>
             </section>
             <!-- San pham moi -->
-            <section id='spBanMoi' class='feildContent'>
-                <h2>Sản Phẩm Mới</h2>
-                <div id='hienThiSPMoi'>
-                    @foreach (var item in ViewBag.SPM)
-                    {
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <a href='#'> <img src="~/Areas/Admin/Content/Photo/@item.img"  alt="@item.thongSoKyThuat" /> </a>
-                                <div class="gia">Giá :@item.giaBan</div>
-                                <div class="thongTinSanPham">
-                                    <a href="#"> @item.tenLinhKien</a>
-                                </div>
-                            </div>
-                            <div class="product-overlay">
-                                <div class="overlay-content">
-                                    <div class="gia">Giá :@item.giaBan</div>
-                                    <div class="thongTinSanPham">
-                                        <a href='#'> @item.moTa</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
-                    <div class='clear'></div>
-                </div>
-            </section>
         </article>
         <aside>
             <div id="Search">
@@ -157,8 +130,9 @@
                     </h4>
                     <div id="formSearch" style="padding 10px">
                         <input id="textSearch" class="ui-autocomplete-input" name="nameProduct" type="text" style="float: left;">
-                     <a href="#"><h4 id="btnDangKy">Tìm</h4>
-                        </a>   
+                        <a href="#">
+                            <h4 id="btnDangKy">Tìm</h4>
+                        </a>
                     </div>
 
 

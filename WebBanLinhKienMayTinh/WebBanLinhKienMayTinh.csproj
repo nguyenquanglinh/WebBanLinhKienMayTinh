@@ -256,9 +256,11 @@
     <Content Include="Areas\Admin\Views\PhieuNhap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuNhap\Add.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuNhap\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\KhongNhoMatKhau.cshtml" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
+    <Content Include="Views\Home\SanPham.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

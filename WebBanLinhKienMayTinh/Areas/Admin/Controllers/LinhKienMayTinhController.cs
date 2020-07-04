@@ -93,7 +93,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Index(int PageNum = 1, int PageSize = 1,int loai=0)
+        public ActionResult Index(int PageNum = 1, int PageSize = 5,int loai=0)
         {
             ViewBag.Title = "Quản lý linh kiện máy tính";
             var llk = new DbAcessLoaiLinhKien();
