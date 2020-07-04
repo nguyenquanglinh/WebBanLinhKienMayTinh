@@ -8,28 +8,28 @@ using WebBanLinhKienMayTinh.Areas.Admin.Models.Entites;
 
 namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
 {
-    public class PhieuNhapController : Controller
+    public class PhieuXuatController : Controller
     {
-        // GET: Admin/PhieuNhap
+        // GET: Admin/PhieuXuat
         public ActionResult Index(int PageNum = 1, int PageSize = 5)
         {
-            ViewBag.Title = "Quản lý phiếu nhập";
+            ViewBag.Title = "Quản lý phiếu Xuất";
             var dblk = new DbAcessLinhKienMayTinh();
             ViewBag.lk = dblk.ListCate();
-            return View(dblk.ListProductPagePhieuNhap(PageNum, PageSize));
+            return View(dblk.ListProductPagePhieuXuat(PageNum, PageSize));
         }
 
         public ActionResult Add()
         {
 
-            ViewBag.Title = "Thêm thêm phiếu nhập";
+            ViewBag.Title = "Thêm thêm phiếu xuất";
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
 
         public ActionResult Edit(int id)
         {
-            ViewBag.Title = "Sửa phiếu nhập";
-            ViewBag.pn = new DbAcessPhieuNhap().GetById(id);
+            ViewBag.Title = "Sửa phiếu xuất";
+            ViewBag.pn = new DbAcessPhieuXuat().GetById(id);
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
 
@@ -38,7 +38,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             try
             {
                 ViewBag.Title = "Xóa phiếu nhập";
-                new DbAcessPhieuNhap().Delete(id);
+                new DbAcessPhieuXuat().Delete(id);
             }
             catch
             {
@@ -51,7 +51,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         public ActionResult Add(int MLLK, string SL, string DG, string TT)
         {
             ViewBag.Title = "Thêm phiếu nhập";
-            var product = new PhieuNhap();
+            var product = new PhieuXuat();
             product.maLinhKien = MLLK;
             if (!string.IsNullOrEmpty(SL))
                 product.soLuong = int.Parse(SL);
@@ -64,8 +64,8 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             {
                 try
                 {
-                    var dao = new DbAcessPhieuNhap();
-                    dao.AddPhieuNhap(product);
+                    var dao = new DbAcessPhieuXuat();
+                    dao.AddPhieuXuat(product);
                     return RedirectToAction("Index");
                 }
                 catch
@@ -86,7 +86,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
             {
                 try
                 {
-                    new DbAcessPhieuNhap().Edit(MLLK, SL, DG, TT, id);
+                    new DbAcessPhieuXuat().Edit(MLLK, SL, DG, TT, id);
                     return RedirectToAction("Index");
 
                 }

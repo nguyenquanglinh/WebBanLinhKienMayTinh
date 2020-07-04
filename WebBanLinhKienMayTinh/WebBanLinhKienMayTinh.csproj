@@ -183,12 +183,14 @@
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinhKienMayTinhController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhieuNhapController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhieuXuatController.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessGioHang.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLinhKienMayTinh.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLoaiLinhKien.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLoaiMay.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessNhaCC.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessPhieuNhap.cs" />
+    <Compile Include="Areas\Admin\Models\DbAcess\DbAcessPhieuXuat.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessUsers.cs" />
     <Compile Include="Areas\Admin\Models\Entites\DbBanLinhKienMayTinh.cs" />
     <Compile Include="Areas\Admin\Models\Entites\GioHang.cs" />
@@ -257,6 +259,9 @@
     <Content Include="Areas\Admin\Views\PhieuNhap\Add.cshtml" />
     <Content Include="Areas\Admin\Views\PhieuNhap\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\KhongNhoMatKhau.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXuat\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXuat\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuXuat\Edit.cshtml" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />

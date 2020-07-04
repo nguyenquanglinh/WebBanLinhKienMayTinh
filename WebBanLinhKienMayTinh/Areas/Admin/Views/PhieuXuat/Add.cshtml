@@ -49,7 +49,6 @@
 
 </script>
 <form action="Add" method="post" role="form" enctype="multipart/form-data" onsubmit="checkForm(this)">
-    <input type="hidden" id="id" name="id" value="@ViewBag.pn.maPhieuNhap" />
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">@ViewBag.Title <b>@ViewBag.Error</b> </h3>
@@ -68,19 +67,14 @@
                         <select class="form-control" name="MLLK">
                             @foreach (var item in Model)
                             {
-                                var select = "";
-                                if (@item.maLinhKien == ViewBag.pn.maLinhKien)
-                                {
-                                    select = "selected";
-                                }
-                                <option @select value="@item.maLinhKien">@item.tenLinhKien</option>
+                                <option value="@item.maLinhKien">@item.tenLinhKien</option>
                             }
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">Số lượng</label>
-                        <input type="text" class="form-control" value="@ViewBag.pn.soLuong" name="SL" id="SL" placeholder="Enter số lượng  ">
+                        <input type="text" class="form-control" name="SL" id="SL" placeholder="Enter số lượng  ">
                     </div>
 
                 </div>
@@ -88,12 +82,12 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">Đơn giá</label>
-                        <input type="text" name="DG" class="form-control"value="@ViewBag.pn.donGia" id="DG" placeholder="Enter trạng thái">
+                        <input type="text" name="DG" class="form-control" id="DG" placeholder="Enter trạng thái">
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tổng tiền</label>
-                        <input type="text" class="form-control"value="@ViewBag.pn.tongTien" name="TT" id="TT" placeholder="Enter chức năng">
+                        <input type="text" class="form-control" name="TT" id="TT" placeholder="Enter chức năng">
                     </div>
                     <!-- /.form-group -->
 

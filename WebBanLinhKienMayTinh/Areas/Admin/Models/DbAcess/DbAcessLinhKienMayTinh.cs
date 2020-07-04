@@ -93,5 +93,9 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
         {
             return Db.PhieuNhaps.OrderByDescending(a => a.maPhieuNhap).ToPagedList(pageNum, pageSize);
         }
+        public IEnumerable<PhieuXuat> ListProductPagePhieuXuat(int pageNum, int pageSize)
+        {
+            return Db.PhieuXuats.OrderByDescending(a => a.maPhieuXuat).ToPagedList(pageNum, pageSize);
+        }
     }
 }

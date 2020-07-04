@@ -1,5 +1,5 @@
 ﻿
-@model PagedList.IPagedList<WebBanLinhKienMayTinh.Areas.Admin.Models.Entites.PhieuNhap>
+@model PagedList.IPagedList<WebBanLinhKienMayTinh.Areas.Admin.Models.Entites.PhieuXuat>
 @using PagedList.Mvc
 <div class="box-body">
     <div class="row">
@@ -43,11 +43,11 @@
                                     <td>@item.tongTien</td>
                                     <td>@item.ngayThang</td>
                                     <td>
-                                        <a href="~/Admin/PhieuNhap/Edit/@item.maPhieuNhap"onclick="return confirm('Không được sửa phiếu nhập')">
+                                        <a href="~/Admin/PhieuXuat/Edit/@item.maPhieuXuat" onclick="return confirm('Không được sửa phiếu nhập')">
                                             <span class="glyphicon glyphicon-edit">
                                             </span>
                                         </a>
-                                        <a href="~/Admin/PhieuNhap/Delete/@item.maPhieuNhap" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                        <a href="~/Admin/PhieuXuat/Delete/@item.maPhieuXuat" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                     </td>
