@@ -21,7 +21,6 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-
             ViewBag.Title = "Thêm phiếu nhập";
             return View(new DbAcessLinhKienMayTinh().ListCate());
         }
