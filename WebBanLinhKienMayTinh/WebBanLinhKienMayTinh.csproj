@@ -182,11 +182,13 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinhKienMayTinhController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhieuNhapController.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessGioHang.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLinhKienMayTinh.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLoaiLinhKien.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessLoaiMay.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessNhaCC.cs" />
+    <Compile Include="Areas\Admin\Models\DbAcess\DbAcessPhieuNhap.cs" />
     <Compile Include="Areas\Admin\Models\DbAcess\DbAcessUsers.cs" />
     <Compile Include="Areas\Admin\Models\Entites\DbBanLinhKienMayTinh.cs" />
     <Compile Include="Areas\Admin\Models\Entites\GioHang.cs" />
@@ -212,7 +214,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\Login.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHome\Logup.cshtml" />
     <Content Include="Areas\Admin\Views\LinhKienMayTinh\Add.cshtml" />
@@ -252,6 +253,9 @@
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuNhap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuNhap\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\PhieuNhap\Edit.cshtml" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />

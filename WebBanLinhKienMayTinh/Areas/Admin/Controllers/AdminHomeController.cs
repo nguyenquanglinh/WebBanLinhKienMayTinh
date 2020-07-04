@@ -10,11 +10,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
     public class AdminHomeController : Controller
     {
         // GET: Admin/AdminHome
-        public ActionResult Change()
-        {
-            ViewBag.Title = "Index admin";
-            return View();
-        }
+      
         public ActionResult Login()
         {
             ViewBag.Title = "Admin Login";

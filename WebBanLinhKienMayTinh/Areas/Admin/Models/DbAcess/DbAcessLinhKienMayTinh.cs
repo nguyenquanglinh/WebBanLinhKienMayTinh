@@ -62,21 +62,28 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
         {
             return Db.LinhKiens.Skip((Pagenum - 1) * PageSize).Take(PageSize).ToList();
         }
+        public List<LinhKien> ListCate()
+        {
+            return Db.LinhKiens.ToList();
+        }
 
 
 
-
-        public IEnumerable<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
+        public List<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
         {
             if (loai == 0)
-                return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize);
+                return Db.LinhKiens.OrderByDescending(a => a.maLinhKien).ToPagedList(Pagenum, PageSize).ToList();
             else
-                return Db.Database.SqlQuery<LinhKien>("select * from LinhKien where maLoaiMay= "+loai).ToPagedList(Pagenum, PageSize);
+                return Db.Database.SqlQuery<LinhKien>("select * from LinhKien where maLoaiMay= "+loai).ToPagedList(Pagenum, PageSize).ToList();
         }
 
         public IEnumerable<User> ListProductPageAccount(int pageNum, int pageSize)
         {
             return Db.Users.OrderByDescending(a => a.userName).ToPagedList(pageNum, pageSize);
+        }
+        public IEnumerable<PhieuNhap> ListProductPagePhieuNhap(int pageNum, int pageSize)
+        {
+            return Db.PhieuNhaps.OrderByDescending(a => a.maPhieuNhap).ToPagedList(pageNum, pageSize);
         }
     }
 }

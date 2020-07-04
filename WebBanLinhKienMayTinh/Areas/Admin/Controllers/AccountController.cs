@@ -11,7 +11,35 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         {
             ViewBag.Title = "Quản lý tài khoản";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
-            return View(dao.ListProductPageAccount(PageNum, PageSize));
+            return View(dao. ListProductPageAccount(PageNum, PageSize));
+        }
+
+        public ActionResult Add()
+        {
+            ViewBag.Title = "Thêm linh kiện mới";
+            return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            ViewBag.Title = "Sửa tài khoản";
+            return View(new DbAcessUsers().GetByMaGH(id));
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                ViewBag.Title = "Xóa linh kiện";
+                var dao = new DbAcessUsers();
+                dao.Delete(id);
+
+            }
+            catch
+            {
+
+            }
+            return Redirect("~/Admin/Account/Index");
         }
 
         [HttpPost]
@@ -43,31 +71,6 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
 
         }
 
-        public ActionResult Add()
-        {
-            ViewBag.Title = "Thêm linh kiện mới";
-            return View();
-        }
-        public ActionResult Edit(int id)
-        {
-            ViewBag.Title = "Sửa tài khoản";
-            return View(new DbAcessUsers().GetByMaGH(id));
-        }
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                ViewBag.Title = "Xóa linh kiện";
-                var dao = new DbAcessUsers();
-                dao.Delete(id);
-
-            }
-            catch
-            {
-
-            }
-            return Redirect("~/Admin/Account/Index");
-        }
         [HttpPost]
         public ActionResult Edit(string userName, string passWord, string chucNang, string trangThai, int id)
         {
