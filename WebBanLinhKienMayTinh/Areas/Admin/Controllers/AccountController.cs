@@ -11,7 +11,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Controllers
         {
             ViewBag.Title = "Quản lý tài khoản";
             DbAcessLinhKienMayTinh dao = new DbAcessLinhKienMayTinh();
-            return View(dao. ListProductPageAccount(PageNum, PageSize));
+            return View(dao.ListProductPageAccount(PageNum, PageSize));
         }
 
         public ActionResult Add()

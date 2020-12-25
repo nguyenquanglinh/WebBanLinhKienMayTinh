@@ -8,9 +8,9 @@ namespace WebBanLinhKienMayTinh.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var dblk = new DbAcessLinhKienMayTinh();
-            ViewBag.SPBC = dblk.GetLinhKienBanChay();
-            ViewBag.SPM = dblk.GetLinhKienMoi();
+
+            ViewBag.SPBC = APIController.GetListLinhKiens();
+            ViewBag.SPM = APIController.GetListLinhKiens();
             return View();
         }
         public ActionResult GioiThieu()

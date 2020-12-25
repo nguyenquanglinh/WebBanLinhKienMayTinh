@@ -74,7 +74,7 @@ namespace WebBanLinhKienMayTinh.Areas.Admin.Models.DbAcess
 
         public List<LinhKien> GetLinhKienBanChay()
         {
-           return Db.Database.SqlQuery<LinhKien>("select LinhKien.maLinhKien,maLoaiLinhKien,maNhaCungCap,maLoaiMay,tenLinhKien,thongSoKyThuat,moTa,giaBan,thoiGianBaoHanh,img from LinhKien, (select top(8)  count(PhieuXuat.maPhieuXuat) as stt, PhieuXuat.maLinhKien from PhieuXuat, LinhKien where PhieuXuat.maLinhKien = LinhKien.maLinhKien   group by  PhieuXuat.maLinhKien order by count(PhieuXuat.maPhieuXuat) desc) as s   where LinhKien.maLinhKien = s.maLinhKien").ToList();
+           return Db.Database.SqlQuery<LinhKien>("select LinhKien.maLinhKien,maLoaiLinhKien,maNhaCungCap,maLoaiMay,tenLinhKien,thongSoKyThuat,moTa,giaBan,thoiGianBaoHanh from LinhKien, (select top(8)  count(ChiTietPhieuXuat.maPhieuXuat) as stt, ChiTietPhieuXuat.maLinhKien from ChiTietPhieuXuat, LinhKien where ChiTietPhieuXuat.maLinhKien = LinhKien.maLinhKien   group by  ChiTietPhieuXuat.maLinhKien order by count(ChiTietPhieuXuat.maPhieuXuat) desc) as s   where LinhKien.maLinhKien = s.maLinhKien").ToList();
         }
 
         public IEnumerable<LinhKien> ListProductPageLinhKien(int Pagenum, int PageSize, int loai)
