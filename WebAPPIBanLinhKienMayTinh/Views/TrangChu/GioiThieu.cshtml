@@ -1,0 +1,480 @@
+﻿@{ 
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bán linh kiến</title>
+
+    <link href="~/fonts/Style/Main.css" rel="stylesheet">
+    <link href="~/fonts/jquery-simplyscroll-2.0.5/jquery.simplyscroll.css" rel="stylesheet">
+    <link href="~/fonts/Style/jquery-ui.css" rel="stylesheet">
+    <link href="~/fonts/Style/cart.css" rel="stylesheet">
+    <link href="~/fonts/Style/login.css" rel="stylesheet">
+    <script src="~/fonts/Js/jquery-3.2.1.min.js" rel="stylesheet"></script>
+</head>
+<body>
+
+    <div id="divlogout">
+    </div>
+    <div id="container">
+        <header>
+            <div id="logo">
+                <img src="~/Content/Photo/images/logo.jpg">
+            </div>
+            <div id="flashHeader">
+                <a href="javascript:gotoshow()"><img src="http://localhost:50644/Areas/Admin/Content/Slideshow/h2.jpg" name="slide" border="0" style="filter:progid:DXImageTransform.Microsoft.Pixelate(MaxSquare=15,Duration=1)"></a>
+            </div>
+            <div style="height: 100%; width: 21%;  height: 150px; ">
+                <div class="feildBasic" align="center">
+                    <div class="divAccount">
+                        <div>
+                            <table style="width:100%; table-layout: fixed">
+                                @{
+                                    var username = Session["username"];
+                                    if (username == null)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <td align="center">
+                                                    <a href="~/Admin/AdminHome/Logup">
+                                                        <h4 id="btnDangKy">Đăng ký</h4>
+                                                    </a>
+                                                </td>
+                                                <td align="center">
+                                                    <a href="~/Admin/AdminHome/Login">
+                                                        <h4 id="btnDangNhap">Đăng Nhập</h4>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td align="center">
+                                                <b>Chào mừng bạn quay trở lại </b>
+                                                <h4 id="btnDangKy">@username</h4>
+
+                                                <a href="~/Admin/AdminHome/Logout">
+                                                    <h4 id="btnDangNhap">Đăng Xuất</h4>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="clear"></p>
+        </header>
+        <nav>
+            <!-- CSS for Tab Menu #4 -->
+            <script src="~/fonts/ddtabmenufiles/ddtabmenu.js"></script>
+            <link rel="stylesheet" type="text/css" href="~/fonts/ddtabmenufiles/ddcolortabs.css">
+            <script type="text/javascript">
+
+            </script>
+            <div id="ddtabs1" class="ddcolortabs">
+                <ul>
+                    <li id="1"><a href="~/trangchu/Index" class="current"><span>Trang chủ</span></a></li>
+                    <li id="2"><a href="~/trangchu/GioiThieu" class=""><span>Giới thiệu</span></a></li>
+                    <li id="3"><a href="~/trangchu/SanPham" class=""><span>Sản phẩm</span></a></li>
+                    <li id="4"><a href="#" class=""><span>Tin tức</span></a></li>
+                    <li id="5"><a href="#" class=""><span>Chính sách bảo hành</span></a></li>
+                    <li id="6"><a href="#" class=""><span>Hỗ trợ kỹ thuật</span></a></li>
+                    <li id="7"><a href="#" class=""><span>Liên hệ</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <article>
+            <h1>Bài tập lớn môn công nghệ web</h1>
+        </article>
+        <aside>
+            <div id="Search">
+                <div class="feildBasic">
+                    <h4>
+                        <i>
+                            <img class="dot" src="~/Content/Photo/images/White_dot.svg.png">
+                        </i>
+                        Tìm Kiếm sản Phẩm
+                    </h4>
+                    <div id="formSearch" style="padding 10px">
+                        <input id="textSearch" class="ui-autocomplete-input" name="nameProduct" type="text" style="float: left;">
+                        <a href="#">
+                            <h4 id="btnDangKy">Tìm</h4>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div id="listProductFeild">
+                    <div class="feildBasic">
+                        <h4>
+                            <i>
+                                <img class="dot" src="~/Content/Photo/images/White_dot.svg.png">
+                            </i>
+                            Danh Mục Sản Phẩm
+                        </h4>
+                        <ul style="list-style-type:none" id="ListProductTitle">
+                            <li class="titleProduct">Linh kiện máy tính</li>
+                            <ul class="ListProduct" style="display: none;">
+                                <li><a href="/Admin/LinhKienMayTinh?loai=0">Tất cả</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=1">CPU</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=10">Main</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=2">Ram</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=11">Ổ cứng</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=4">Nguồn</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=7">Vỏ ngoài</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=3">Card màn hình</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=8">Màn hình</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=6">Chuột</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=5">Bàn phím</a></li>
+                                <li><a href="/Admin/LinhKienMayTinh?loai=9">Dây nối </a></li>
+
+                            </ul>
+                            <li class="titleProduct">Máy tính thương hiệu</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        HP - Compaq
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        CMS
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        FPT Elad
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        DELL
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <li class="titleProduct">Máy tính xách tay</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        Acer
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        HP - Compaq
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Lenovo
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Toshiba
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Dell
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Sony Vaio
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <li class="titleProduct">Máy văn phòng</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        Máy in
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Máy chiếu
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Máy fax
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Máy photocopy
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Bộ lưu điện
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Máy Scan
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <li class="titleProduct">Thiết bị mạng</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        Modem ADSL
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Card mạng
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Switch
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Thiết bị wifi
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Phụ kiện TBM
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <li class="titleProduct">Phụ kiện máy tính</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        Loa vi tính
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Webcam
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Tai nghe
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        USB Flash
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        TV Box
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Phụ kiện khác
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <li class="titleProduct">Linh kiện máy in</li>
+                            <ul class="ListProduct" style="display: none;">
+
+                                <li>
+                                    <a href="#">
+                                        Trống
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Gạt
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Cartridge
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Mực đổ
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Trục xạc
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <script>
+                                $('.ListProduct').hide();
+                                $('.titleProduct').click(function () {
+                                    $(this).next().slideToggle(500);
+                                });
+                            </script>
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="news">
+                    <div class="feildBasic">
+                        <h4>
+                            <i>
+                                <img class="dot" src="~/Content/Photo/images/White_dot.svg.png">
+                            </i>
+                            Tin Tức MỚi
+                        </h4>
+                        <div style=" padding:0 10px 0 10px;">
+                            <p>
+                                <a href="#" style="margin-bottom:10px">
+                                    MacBook Pro 15 inch dùng chip Intel Core i5 và Core i7
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#" style="margin-bottom:10px">
+                                    Compaq Presario CQ42AX tiết kiệm năng lượng
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#" style="margin-bottom:10px">
+                                    LCD Razor LED mỏng 12,9 mm
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#" style="margin-bottom:10px">
+                                    Dell làm mới dòng Vostro V13 với nhiều cải tiến
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="nbAccess">
+                    <div class="feildBasic">
+                        <h4>
+                            <i>
+                                <img class="dot" src="~/Content/Photo/images/White_dot.svg.png">
+                            </i>
+                            Số người truy cập
+                        </h4>
+                        <div style=" padding-left:30px; ">
+                            <table id="truyCap">
+                                <tbody>
+                                    <tr>
+                                        <td>Hôm nay</td>
+                                        <td align="right">10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hôm qua</td>
+                                        <td align="right">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tuần này</td>
+                                        <td align="right">22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tháng này</td>
+                                        <td align="right">100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tất Cả</td>
+                                        <td align="right">2302</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <div class="clear"></div>
+        <footer>
+            <p>
+                Bài tập lớn môn công nghệ lập trình tích hợp nhóm 3
+                <br>
+                Học viện kỹ thuật Quân sự
+            </p>
+        </footer>
+    </div>
+    <!--Reference-->
+    <script src="~/fonts/Js/Menu.js"></script>
+    <script src="~/fonts/Js/SimplyScroll.js"></script>
+    <script src="~/fonts/Js/jquery-ui.js"></script>
+    <script src="~/fonts/jquery-simplyscroll-2.0.5/jquery.simplyscroll.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnSearch').click(function () {
+                let name = $('#textSearch').val();
+                var dem = 0;
+                ListSP.forEach(function (item) {
+                    if (name === item.TenSP) {
+                        dem++;
+                        $(location).attr('href', '#');
+                    }
+                })
+                if (dem === 0) alert('không có sản phẩm cần tìm ');
+            })
+            $('#textSearch').keypress(function (e) {
+                $('#textSearch').autocomplete(
+                {
+                    source: ListTenSP,
+                });
+
+                if (e.which == 13 || e.keyCode == 13) {
+                    $('#btnSearch').click();
+                }
+            });
+        })
+
+
+    </script>
+
+
+</body>
+</html>
